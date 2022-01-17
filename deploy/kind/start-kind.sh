@@ -18,29 +18,20 @@
 
 set -x
 
-# Create cluster config
-cat > mycluster.yaml <<EOF
-kind: Cluster
-apiVersion: kind.x-k8s.io/v1alpha4
-nodes:
-- role: control-plane
-- role: worker
-- role: worker
-EOF
+SCRIPTDIR=$(cd $(dirname "$0") && pwd)
+
+TRAVIS_KUBE_VERSION=${TRAVIS_KUBE_VERSION:="v1.20"}
 
 # Map from Kubernetes major versions to the kind node image tag
 case $TRAVIS_KUBE_VERSION in
-    v1.14) KIND_NODE_TAG=v1.14.10@sha256:ce4355398a704fca68006f8a29f37aafb49f8fc2f64ede3ccd0d9198da910146 ;;
-    v1.15) KIND_NODE_TAG=v1.15.12@sha256:d9b939055c1e852fe3d86955ee24976cab46cba518abcb8b13ba70917e6547a6 ;;
-    v1.16) KIND_NODE_TAG=v1.16.15@sha256:a89c771f7de234e6547d43695c7ab047809ffc71a0c3b65aa54eda051c45ed20 ;;
-    v1.17) KIND_NODE_TAG=v1.17.11@sha256:5240a7a2c34bf241afb54ac05669f8a46661912eab05705d660971eeb12f6555 ;;
-    v1.18) KIND_NODE_TAG=v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb  ;;
-    v1.19) KIND_NODE_TAG=v1.19.1@sha256:98cf5288864662e37115e362b23e4369c8c4a408f99cbc06e58ac30ddc721600  ;;
+    v1.19) KIND_NODE_TAG=v1.19.11@sha256:07db187ae84b4b7de440a73886f008cf903fcf5764ba8106a9fd5243d6f32729 ;;
+    v1.20) KIND_NODE_TAG=v1.20.7@sha256:cbeaf907fc78ac97ce7b625e4bf0de16e3ea725daf6b04f930bd14c67c671ff9  ;;
+    v1.21) KIND_NODE_TAG=v1.21.1@sha256:69860bda5563ac81e3c0057d654b5253219618a22ec3a346306239bba8cfa1a6  ;;
     *) echo "Unsupported Kubernetes version $TRAVIS_KUBE_VERSION"; exit 1 ;;
 esac
 
 # Boot cluster
-kind create cluster --config mycluster.yaml --name kind --image kindest/node:${KIND_NODE_TAG} --wait 10m || exit 1
+kind create cluster --config "$SCRIPTDIR/kind-cluster.yaml" --name kind --image kindest/node:${KIND_NODE_TAG} --wait 10m || exit 1
 
 echo "Kubernetes cluster is deployed and reachable"
 kubectl describe nodes
