@@ -21,7 +21,7 @@
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-nodejs-v14",
-                    "tag": "1.19.0"
+                    "tag": "latest"
                 },
                 "deprecated": false,
                 "attached": {
