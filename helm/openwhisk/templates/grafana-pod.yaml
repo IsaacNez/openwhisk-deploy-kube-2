@@ -96,6 +96,8 @@ spec:
             mountPath: /var/lib/grafana/config/dashboards
           - name: grafana-dashboard-volume
             mountPath: /var/lib/grafana/dashboards
+      imagePullSecrets:
+      - name: {{ .Release.Name }}-private-registry.auth 
       volumes:
       - name: grafana-datasource-config-volume
         configMap:

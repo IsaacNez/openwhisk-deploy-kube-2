@@ -77,7 +77,8 @@ spec:
               mountPath: /etc/prometheus/
             - name: prometheus-storage-volume
               mountPath: {{ .Values.prometheus.persistentVolume.mountPath }}
-
+      imagePullSecrets:
+      - name: {{ .Release.Name }}-private-registry.auth 
       volumes:
       - name: prometheus-config-volume
         configMap:

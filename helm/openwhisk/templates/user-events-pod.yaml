@@ -70,4 +70,6 @@ spec:
             httpGet:
               path: /ping
               port: {{ .Values.user_events.port }}
+      imagePullSecrets:
+      - name: {{ .Release.Name }}-private-registry.auth 
 {{- end }}
