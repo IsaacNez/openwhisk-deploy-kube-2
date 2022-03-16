@@ -24,9 +24,9 @@ export PROVIDER_DB_URL=$PROVIDER_DB_PROTOCOL://$PROVIDER_DB_USERNAME:$PROVIDER_D
 #####
 
 # Clone openwhisk repo to get installRouteMgmt.sh and core/routemgmt
-git clone https://github.com/apache/openwhisk openwhisk
+git clone -b 1.0.0 https://github.com/apache/openwhisk openwhisk
 pushd openwhisk
-    git checkout $OW_GIT_TAG_OPENWHISK
+    # git checkout $OW_GIT_TAG_OPENWHISK
     rm -f /openwhisk/ansible/files/auth.guest /openwhisk/ansible/files/auth.whisk.system
 popd
 
