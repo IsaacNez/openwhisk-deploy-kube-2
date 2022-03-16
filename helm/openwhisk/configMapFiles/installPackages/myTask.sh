@@ -73,10 +73,10 @@ popd
 #####
 # Install the OpenWhisk Catalog
 #####
-git clone https://github.com/apache/openwhisk-catalog openwhisk-catalog
-pushd openwhisk-catalog
-    git checkout $OW_GIT_TAG_OPENWHISK_CATALOG
-popd
+git clone -b 1.0.0 https://github.com/apache/openwhisk-catalog openwhisk-catalog
+# pushd openwhisk-catalog
+#     git checkout $OW_GIT_TAG_OPENWHISK_CATALOG
+# popd
 
 pushd openwhisk-catalog/packages
     ./installCatalogUsingWskdeploy.sh $WHISK_AUTH $WHISK_API_HOST_URL /usr/local/bin/wsk || exit 1
