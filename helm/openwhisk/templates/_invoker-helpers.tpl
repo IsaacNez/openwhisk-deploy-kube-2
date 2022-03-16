@@ -45,6 +45,8 @@
 - name: docker-pull-runtimes
   image: "{{- .Values.docker.registry.name -}}{{- .Values.utility.imageName -}}:{{- .Values.utility.imageTag -}}"
   imagePullPolicy: {{ .Values.utility.imagePullPolicy | quote }}
+  imagePullSecrets:
+  - name: {{ .Release.Name }}-private-registry.auth
   command: ["/usr/local/bin/ansible-playbook", "/invoker-scripts/playbook.yml"]
   volumeMounts:
   - name: dockersock
