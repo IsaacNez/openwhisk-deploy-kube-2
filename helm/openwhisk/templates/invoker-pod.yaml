@@ -214,5 +214,7 @@ spec:
         ports:
         - name: invoker
           containerPort: {{ .Values.invoker.port }}
+      imagePullSecrets:
+      - name: {{ .Release.Name }}-private-registry.auth
 {{ include "openwhisk.invoker.volume_mounts" . }}
 {{- end }}
