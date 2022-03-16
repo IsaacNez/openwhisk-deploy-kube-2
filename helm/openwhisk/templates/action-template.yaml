@@ -13,7 +13,7 @@ metadata:
     chart: openwhisk-1.0.1
     heritage: Helm
     release: owdev
-  name: owdev-private-registry.auth
+  name: owdev-action-pod-registry.auth
   namespace: openwhisk
   resourceVersion: "1286"
   uid: 54dae6d9-64df-4ec8-a055-6f00e98f8a04
