@@ -71,7 +71,6 @@ spec:
 {{ include "openwhisk.invoker.volumes" . }}
 {{- end }}
 {{ include "openwhisk.docker.imagePullSecrets" . | indent 6 }}
-
       containers:
       - name: controller
         imagePullPolicy: {{ .Values.controller.imagePullPolicy | quote }}
@@ -210,4 +209,6 @@ spec:
 {{ include "openwhisk.invoker.containerconfig" . | indent 8 }}
         - name: "CONFIG_whisk_helm_release"
           value: "{{ .Release.Name }}"
+      imagePullSecrets:
+      - name: {{ .Release.Name }}-private-registry.auth
 {{- end }}
