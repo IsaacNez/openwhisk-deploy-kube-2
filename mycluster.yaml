@@ -47,7 +47,7 @@ invoker:
   imageTag: "1"
 
   jvmHeapMB: "2048"
-  options: "-Dwhisk.spi.LogStoreProvider=org.apache.openwhisk.core.containerpool.logging.LogDriverLogStoreProvider"
+  options: "-Dwhisk.spi.LogStoreProvider=org.apache.openwhisk.core.containerpool.logging.LogStoreProvider"
   containerFactory:
     impl: "kubernetes"
     replicaCount: 3
