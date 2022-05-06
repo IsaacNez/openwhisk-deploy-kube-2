@@ -11,7 +11,7 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: /u/iot_data/iotstorage/user_actions
-  
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -23,3 +23,4 @@ spec:
     requests:
       storage: 5Gi
   volumeName: function-pv
+---
